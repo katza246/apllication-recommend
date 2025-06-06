@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>המלצות לאפליקציות</title>
+    <link rel="stylesheet" href="/css/master.css">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="toolbar">
+            <a href="games.aspx">משחקים</a>
+            <a href="bidur.aspx">בידור</a>
+            <a href="edgu.aspx">חינוך</a>
+            <a href="shopping.aspx">קניות</a>
+            <a href="tachbura.aspx">תחבורה</a>
+            <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">התנתקות</asp:LinkButton>
+            <%
+                 if (Session["username"] != null )
+                 {
+                    Response.Write("<a href='update.aspx'>Update</a>");
+                    Response.Write("<a href='quiz.aspx'>שאלון</a>");
+                 }
+                 if (Session["isAdmin"]!=null &&(bool)Session["isAdmin"]==true)
+                 {
+                    Response.Write("<a href='admin.aspx'>טבלת משתמשים</a>");
+                 }
+            %>
+            <a href="main.aspx" class="active">ברוך הבא!</a>
+        </div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
+
+
+
